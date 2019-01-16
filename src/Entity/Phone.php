@@ -4,11 +4,17 @@ namespace App\Entity;
 
 use ApiPlatform\Core\Annotation\ApiResource;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Serializer\Annotation\Groups;
 
 /**
  * @ApiResource(
- *     collectionOperations={"get"},
- *     itemOperations={"get"})
+ *     collectionOperations={
+ *          "get"={
+ *              "method"="GET",
+ *              "normalization_context"={"groups"={"list"}}
+ *          }
+ *     },
+ *     itemOperations={"get"={"method"="GET"}})
  * @ORM\Entity(repositoryClass="App\Repository\PhoneRepository")
  */
 class Phone
@@ -22,11 +28,13 @@ class Phone
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Groups({"list"})
      */
     private $name;
 
     /**
      * @ORM\Column(type="integer")
+     * @Groups({"list"})
      */
     private $price;
 
