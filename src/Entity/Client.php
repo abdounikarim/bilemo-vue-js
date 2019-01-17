@@ -6,12 +6,15 @@ use ApiPlatform\Core\Annotation\ApiResource;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\Security\Core\User\UserInterface;
 use Symfony\Component\Serializer\Annotation\Groups;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ApiResource()
  * @ORM\Entity(repositoryClass="App\Repository\ClientRepository")
+ * @UniqueEntity(fields={"username"}, message="Cet identifiant est déjà utilisé")
  */
 class Client implements UserInterface
 {
@@ -26,6 +29,8 @@ class Client implements UserInterface
     /**
      * @ORM\Column(type="string", length=180, unique=true)
      * @Groups({"list"})
+     * @Assert\NotBlank(message="Merci de renseigner un pseudo")
+     * @Assert\Length(min="2", max="30", minMessage="Merci de renseigner un minimum de {{ limit }} caractères", maxMessage="Merci de renseigner un maximum de {{ limit }} caractères")
      */
     private $username;
 

@@ -5,6 +5,8 @@ namespace App\Entity;
 use ApiPlatform\Core\Annotation\ApiResource;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Serializer\Annotation\Groups;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ApiResource(
@@ -22,6 +24,7 @@ use Symfony\Component\Serializer\Annotation\Groups;
  *     }
  * )
  * @ORM\Entity(repositoryClass="App\Repository\UserRepository")
+ * @UniqueEntity(fields={"pseudo"}, message="Cet identifiant est déjà utilisé")
  */
 class User
 {
@@ -36,18 +39,24 @@ class User
     /**
      * @ORM\Column(type="string", length=255)
      * @Groups({"list", "add"})
+     * @Assert\NotBlank(message="Ce champ ne doit pas être vide")
+     * @Assert\Length(min="2", max="30", minMessage="Merci de renseigner un minimum de {{ limit }} caractères", maxMessage="Merci de renseigner un maximum de {{ limit }} caractères")
      */
     private $firstname;
 
     /**
      * @ORM\Column(type="string", length=255)
      * @Groups({"list", "add"})
+     * @Assert\NotBlank(message="Ce champ ne doit pas être vide")
+     * @Assert\Length(min="2", max="30", minMessage="Merci de renseigner un minimum de {{ limit }} caractères", maxMessage="Merci de renseigner un maximum de {{ limit }} caractères")
      */
     private $lastname;
 
     /**
      * @ORM\Column(type="string", length=255)
      * @Groups({"list", "add"})
+     * @Assert\NotBlank(message="Ce champ ne doit pas être vide")
+     * @Assert\Length(min="2", max="30", minMessage="Merci de renseigner un minimum de {{ limit }} caractères", maxMessage="Merci de renseigner un maximum de {{ limit }} caractères")
      */
     private $pseudo;
 

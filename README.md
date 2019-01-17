@@ -1,5 +1,9 @@
 **Installation du projet**
 
+Installer les dépendances du projet :
+
+```composer install```
+
 Lancer les commandes suivantes : 
 
 ```bin/console doctrine:database:create```
