@@ -8,13 +8,13 @@ use Symfony\Component\Serializer\Annotation\Groups;
 
 /**
  * @ApiResource(
- *     collectionOperations={
- *          "get"={
- *              "normalization_context"={
- *                  "groups"={"list"}
+ *     collectionOperations={"get"={"method"="GET","normalization_context"={"groups"={"list"}}},
+ *          "post"={
+ *              "method"="POST",
+ *              "denormalization_context"={
+ *                  "groups"={"add"}
  *              }
- *          },
- *          "post"
+ *          }
  *     },
  *     itemOperations={
  *          "get"={"method"="GET"},
@@ -35,29 +35,30 @@ class User
 
     /**
      * @ORM\Column(type="string", length=255)
-     * @Groups({"list"})
+     * @Groups({"list", "add"})
      */
     private $firstname;
 
     /**
      * @ORM\Column(type="string", length=255)
-     * @Groups({"list"})
+     * @Groups({"list", "add"})
      */
     private $lastname;
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Groups({"list", "add"})
      */
     private $pseudo;
 
     /**
-     * @ORM\Column(type="datetime")
+     * @ORM\Column(type="datetime", nullable=true)
      */
     private $birthdayDate;
 
     /**
      * @ORM\ManyToOne(targetEntity="App\Entity\Client", inversedBy="users")
-     * @Groups({"list"})
+     * @Groups({"list", "add"})
      */
     private $client;
 
