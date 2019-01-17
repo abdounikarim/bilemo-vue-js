@@ -57,6 +57,7 @@ class User
 
     /**
      * @ORM\ManyToOne(targetEntity="App\Entity\Client", inversedBy="users")
+     * @Groups({"list"})
      */
     private $client;
 
