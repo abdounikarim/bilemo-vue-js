@@ -9,6 +9,8 @@ use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 
 class ClientFixtures extends Fixture
 {
+    private $clients = ['sfr', 'free'];
+
     /**
      * @var UserPasswordEncoderInterface
      */
@@ -21,15 +23,18 @@ class ClientFixtures extends Fixture
 
     public function load(ObjectManager $manager)
     {
-        $client =  new Client();
-        $client->setUsername('sfr');
-        $pass = 'pass';
-        $password = $this->userPasswordEncoder->encodePassword($client, $pass);
-        $client->setPassword($password);
-        $client->setRoles($client->getRoles());
+        foreach ($this->clients as $item) {
+            $client =  new Client();
+            $client->setUsername($item);
+            $pass = 'pass';
+            $password = $this->userPasswordEncoder->encodePassword($client, $pass);
+            $client->setPassword($password);
+            $client->setRoles($client->getRoles());
 
-        $manager->persist($client);
+            $this->addReference($item, $client);
 
+            $manager->persist($client);
+        }
         $manager->flush();
     }
 }

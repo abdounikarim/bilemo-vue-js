@@ -55,6 +55,11 @@ class User
      */
     private $birthdayDate;
 
+    /**
+     * @ORM\ManyToOne(targetEntity="App\Entity\Client", inversedBy="users")
+     */
+    private $client;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -104,6 +109,18 @@ class User
     public function setBirthdayDate(\DateTimeInterface $birthdayDate): self
     {
         $this->birthdayDate = $birthdayDate;
+
+        return $this;
+    }
+
+    public function getClient(): ?Client
+    {
+        return $this->client;
+    }
+
+    public function setClient(?Client $client): self
+    {
+        $this->client = $client;
 
         return $this;
     }
