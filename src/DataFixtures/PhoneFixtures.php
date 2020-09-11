@@ -8,6 +8,8 @@ use Doctrine\Persistence\ObjectManager;
 
 class PhoneFixtures extends Fixture
 {
+    private $models = ['X', 'Xs', 'Xr', 'SE', 'SE2', '7', '8'];
+
     private $descriptions = [
         //Add three description
         'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam lorem felis, lobortis ut sem vel, laoreet gravida ipsum. Donec egestas turpis condimentum ullamcorper consectetur. Donec sem massa, fermentum imperdiet vestibulum consectetur, sodales nec nulla. Morbi placerat metus sed lacus bibendum, ac finibus est pharetra. Phasellus finibus purus a lacus semper scelerisque. Donec eget gravida lacus. Cras sollicitudin luctus metus sit amet venenatis. Vivamus tellus augue, rutrum sit amet ornare sit amet, eleifend et augue. Cras erat nisl, ultrices a sollicitudin et, posuere id sapien. Quisque lobortis dapibus neque, cursus rutrum mi condimentum in. Curabitur facilisis sapien dolor, non finibus orci efficitur sed. Aenean tristique finibus risus, sollicitudin facilisis arcu luctus id. Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
@@ -21,7 +23,7 @@ class PhoneFixtures extends Fixture
     {
         for ($i = 1; $i <=20; $i++) {
             $phone = new Phone();
-            $phone->setName('iPhone X '.uniqid());
+            $phone->setName('iPhone '.$this->models[random_int(0, 6)].' '.uniqid());
             $phone->setPrice(random_int(200, 1000));
             $phone->setDescription($this->descriptions[random_int(0, 2)]);
             $phone->setColor($this->colors[random_int(0, 5)]);
