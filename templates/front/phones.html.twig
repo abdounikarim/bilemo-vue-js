@@ -1,0 +1,19 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Téléphones{% endblock %}
+
+{% block body %}
+    <div>
+        <h1>Les téléphones</h1>
+        <div id="phones">
+            {% for phone in phones %}
+                <div class="phone">
+                    <h2>Nom : {{ phone.name }}</h2>
+                    <p>Prix : {{ phone.price }} €</p>
+                    <p>Couleur : {{ phone.color }}</p>
+                    <p>Description : {{ phone.description }}</p>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+{% endblock %}
