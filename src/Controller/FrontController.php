@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Entity\Phone;
 use App\Repository\PhoneRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Routing\Annotation\Route;
@@ -22,7 +23,17 @@ class FrontController extends AbstractController
     public function phones(PhoneRepository $phoneRepository)
     {
         return $this->render('front/phones.html.twig', [
-            'phones' => $phoneRepository->findAll()
+            'phones' => $phoneRepository->findAll(),
+        ]);
+    }
+
+    /**
+     * @Route("/phone/{id}", name="phone")
+     */
+    public function phone(Phone $phone)
+    {
+        return $this->render('front/phone.html.twig', [
+            'phone' => $phone,
         ]);
     }
 }

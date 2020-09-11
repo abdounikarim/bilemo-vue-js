@@ -1,0 +1,13 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{{ phone.name }}{% endblock %}
+
+{% block body %}
+    <div class="phone">
+        <h1>Nom : {{ phone.name }}</h1>
+        <p>Prix : {{ phone.price }} €</p>
+        <p>Couleur : {{ phone.color }}</p>
+        <p>Description : {{ phone.description }}</p>
+    </div>
+    <p class="text-center"><a href="{{ path('home') }}">Accueil</a></p>
+{% endblock %}

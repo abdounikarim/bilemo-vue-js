@@ -8,7 +8,9 @@
         <div id="phones">
             {% for phone in phones %}
                 <div class="phone">
-                    <h2>Nom : {{ phone.name }}</h2>
+                    <h2><a href="{{ path('phone', {
+                            id: phone.id
+                        }) }}">Nom : {{ phone.name }}</a></h2>
                     <p>Prix : {{ phone.price }} €</p>
                     <p>Couleur : {{ phone.color }}</p>
                     <p>Description : {{ phone.description }}</p>
